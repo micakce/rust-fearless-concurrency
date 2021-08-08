@@ -15,6 +15,7 @@ fn main() {
     }).collect();
     for filename in dir {
         let contents : String = std::fs::read_to_string(&filename).unwrap();
+        // println!("Value of CONCURRENTLY is {}", config.concurrently);
         if config.concurrently {
             let count = search_and_count_concurrently("how", &contents);
             println!("The word \"{}\" appears {} time in file \"{}\"","how", count, filename);
@@ -23,19 +24,5 @@ fn main() {
             println!("The word \"{}\" appears {} time in file \"{}\"","how", count, filename);
         }
     }
-
-    // let thread_handles = config.dir.into_iter().map(|path| {
-    //     let filename = String::from(path.as_ref().unwrap().path().display().to_string());
-    //     println!("2hat tha fuck");
-    //     // let query = &config.query.clone();
-    //     thread::spawn( move || {
-    //         let contents = std::fs::read_to_string(&filename).unwrap();
-    //         let count = search_and_count("how", &contents);
-    //         println!("The word \"{}\" appears {} time in file \"{}\"","how", count, filename);
-    //     })
-    // });
-    // for threar in thread_handles {
-    //     threar.join().unwrap();
-    // }
 
 }

@@ -26,7 +26,23 @@ impl Config {
             None => return Err("Didn't get a folder argument")
         };
 
-        let concurrently = env::var("CONCURRENTLY").is_err();
+        // let concurrently = env::var("CONCURRENTLY").is_err();
+        let concurrently = match env::var("CONCURRENTLY") {
+            Ok(val) => {
+                if val == "1" || val == "true" {
+                    println!("Running program multi threaded");
+                    true
+                } else {
+                    println!("Running program single threaded, must pass \"1\" or \"true\"" );
+                    false
+                }
+            },
+            Err(_e) => {
+                // println!("couldn't interpret {}: {}", "CONCURRENTLY", e);
+                println!("Running program single threaded");
+                false
+            }
+        };
 
         Ok(Config { query, dir, concurrently})
     }
