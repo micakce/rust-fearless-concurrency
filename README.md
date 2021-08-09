@@ -80,12 +80,6 @@ CONCURRENTLY=1 cargo run how books  15.60s user 0.20s system 365% CPU 4.324 tota
 ![Multi Threaded minigrep](./images/multi_thread.gif)
 
 
-Wow, wow. What was that? Yes, our program executed in almost 1/4 of the time and the
-graph was all over the place. Remember we are splitting each file in 4 equal parts and
-searching through them at the same time? That's what you see in the graph, 4 threads spiking
-at all times, reading each part of the file in parallel, taking almost 1/4 of the time, and this makes
-sense because we are doing 4 times the work.
-
 Wow, wow. What was that? Yes, the graph was all over the place and our program executed
 faster than before. If we pay attention to the terminal output the `time` commands gave
 us some information about the execution of the program, we care about the part that says
@@ -97,17 +91,11 @@ in parallel, taking almost 1/4 of the time, and this makes sense because we are 
 times the work, 365% compare to only 99%.
 
 
-So what is all this about procesess, threads, CPU, concurrency and parallelism?
+### References:
 
-- A process, from Wikipedia: "In computing, a process is the instance of a computer program that is being
-  executed by one or many threads. It contains the program code and its activity.
-  Depending on the operating system (OS), a process may be made up of multiple threads of
-  execution that execute instructions concurrently"
-
-in simpler words, a process is any program or task running in you machine, it is loaded
-in memory and takes CPU time.
+- Source code [here](https://github.com/micakce/rust-fearless-concurrency)
+- Books taken from [Gutenberg](https://www.gutenberg.org/)
+- Resources monitoring tool: [Bottom](https://github.com/ClementTsang/bottom)
 
 
 
-In our example we are going to use three files, three books taken [from this
-website](https://www.gutenberg.org/) that provides free plain-text ebooks.
